@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNull;
@@ -56,13 +55,22 @@ public class OtherSamples {
 	@Test
 	public void 自分でエントリをputする() {
 		Cache<String, Integer> origCache = CacheBuilder.newBuilder()
-			.expireAfterWrite(5, TimeUnit.SECONDS)
+			.maximumSize(3)
 			.build();
 
 		origCache.put("foo", 1);
 		origCache.put("bar", 2);
+		origCache.put("baz", 3);
+		origCache.put("hoge", 4);
 
-		assertThat(origCache.getIfPresent("foo"), is(1));
-		assertNull(origCache.getIfPresent("baz"));
+		assertNull(origCache.getIfPresent("foo"));
+		assertThat(origCache.getIfPresent("bar"), is(2));
+		assertThat(origCache.getIfPresent("baz"), is(3));
+		assertThat(origCache.getIfPresent("hoge"), is(4));
+
+		assertThat(origCache.size(), is(3L));
+		origCache.invalidateAll();
+		assertThat(origCache.size(), is(0L));
+
 	}
 }

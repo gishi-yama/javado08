@@ -21,7 +21,9 @@ public class GuavaCache implements IGuavaCache {
 
 	@Override
 	public int getRandomInt() {
-		return random.nextInt(1000);
+		int i = random.nextInt(1000);
+		System.out.println("生成: " + i + " ");
+		return i;
 	}
 
 
@@ -34,7 +36,7 @@ public class GuavaCache implements IGuavaCache {
 //					return getRandomInt();
 //				}
 //			});
-			.build(CacheLoader.from((k) -> getRandomInt()));
+			.build(CacheLoader.from(() -> getRandomInt()));
 
 
 	@Override
@@ -43,7 +45,7 @@ public class GuavaCache implements IGuavaCache {
 			Stopwatch stopwatch = Stopwatch.createStarted();
 			int i = randomIntCache.get(key);
 			stopwatch.stop();
-			System.out.println(stopwatch.toString());
+			System.out.println("キャッシュ呼び出し:" + stopwatch.toString());
 			return i;
 		} catch (ExecutionException e) {
 			e.printStackTrace();
