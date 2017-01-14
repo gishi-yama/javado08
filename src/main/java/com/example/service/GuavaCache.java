@@ -24,15 +24,17 @@ public class GuavaCache implements IGuavaCache {
 		return random.nextInt(1000);
 	}
 
+
 	private final LoadingCache<String, Integer> randomIntCache =
 		CacheBuilder.newBuilder()
 			.expireAfterWrite(5, TimeUnit.SECONDS)
-			.build(new CacheLoader<String, Integer>() {
-				@Override
-				public Integer load(String key) throws Exception {
-					return getRandomInt();
-				}
-			});
+//			.build(new CacheLoader<String, Integer>() {
+//				@Override
+//				public Integer load(String key) throws Exception {
+//					return getRandomInt();
+//				}
+//			});
+			.build(CacheLoader.from((k) -> getRandomInt()));
 
 
 	@Override

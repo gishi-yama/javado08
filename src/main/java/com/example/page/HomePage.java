@@ -12,8 +12,8 @@ public class HomePage extends WebPage {
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 
-		add(Link.onClick("toSamplePage1", (link) -> setResponsePage(new SamplePage1()))
-			.setBody(Model.of("toSamplePage1")));
+		add(Link.onClick("toSamplePage", (link) -> setResponsePage(new SamplePage()))
+			.setBody(Model.of("toSamplePage")));
 
 		add(new Label("version", getApplication().getFrameworkSettings().getVersion()));
 

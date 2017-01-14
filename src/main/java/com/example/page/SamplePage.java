@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 import static org.apache.wicket.ajax.AbstractAjaxTimerBehavior.onTimer;
 import static org.apache.wicket.util.time.Duration.ONE_SECOND;
 
-public class SamplePage1 extends WebPage {
+public class SamplePage extends WebPage {
 
 	@Inject
 	private IGuavaCache cache;
 
-	public SamplePage1() {
+	public SamplePage() {
 
 		add(new Label("dateTime", LoadableDetachableModel.of(LocalDateTime::now))
 			.setOutputMarkupId(true)
