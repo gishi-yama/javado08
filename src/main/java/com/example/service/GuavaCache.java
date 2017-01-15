@@ -22,7 +22,7 @@ public class GuavaCache implements IGuavaCache {
 	@Override
 	public int getRandomInt() {
 		int i = random.nextInt(1000);
-		System.out.println("生成: " + i + " ");
+//		System.out.println("生成: " + i + " ");
 		return i;
 	}
 

@@ -30,7 +30,7 @@ public class SamplePage extends WebPage {
 
 		add(new Label("cache1", LoadableDetachableModel.of(() -> cache.getCachedRandomInt("cache1")))
 			.setOutputMarkupId(true)
-			.add(onTimer(seconds(10), (t) -> t.add(getPage().get("cache1")))));
+			.add(onTimer(seconds(5), (t) -> t.add(getPage().get("cache1")))));
 
 
 	}
